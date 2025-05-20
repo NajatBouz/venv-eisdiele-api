@@ -39,7 +39,17 @@ def put_flavour(name):
            flavour.clear()
            flavour.update(update_flavour)
            return jsonify({"message": "Sorte wurde erfolgreich geupdatet"}), 200
-    return jsonify({"message": "Sorte nicht gefunden"}), 404       
+    return jsonify({"message": "Sorte nicht gefunden"}), 404 
+
+
+@app.route("/api/flavours/<name>", methods=["PATCH"])
+def patch_flavours(name):
+    update_flavour = request.get_json()
+    for flavour in flavours:
+        if flavour["name"] == name:
+            flavour.update(update_flavour)
+            return jsonify({"message": "Sorte nicht gefunden"}), 404
+
  
 
 
